@@ -1,0 +1,80 @@
+<link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.5.1/css/all.css">
+<link rel="stylesheet" href="css/style.css">
+
+<div class="sidebar">
+    <div class="logo-details">
+        <span id="btn" onclick="toggleSidebar()">×</span>
+    </div>
+    <ul class="nav-list">
+        <li>
+            <a href="#" class="active" data-page="home">
+                <i class="fa-solid fa-house"></i>
+                <span class="links_name">الصفحة الرئيسية</span>
+            </a>
+        </li>
+        <li>
+            <a href="#" data-page="fawry">
+                <i class="fa-solid fa-wallet"></i>
+                <span class="links_name">فوري</span>
+            </a>
+        </li>
+        <li>
+            <a href="#" data-page="security">
+                <i class="fa-solid fa-shield"></i>
+                <span class="links_name">أمان</span>
+            </a>
+        </li>
+        <li>
+            <a href="#" data-page="cash">
+                <i class="fa-solid fa-money-bill"></i>
+                <span class="links_name">الكاش</span>
+            </a>
+        </li>
+        <li>
+            <a href="#" data-page="vault">
+                <i class="fa-solid fa-vault"></i>
+                <span class="links_name">الخزينة</span>
+            </a>
+        </li>
+        <li>
+            <a href="#" data-page="clients">
+                <i class="fa-solid fa-users"></i>
+                <span class="links_name">العملاء</span>
+            </a>
+        </li>
+        <li>
+            <a href="#" data-page="debtors">
+                <i class="fa-solid fa-hand-holding-dollar"></i>
+                <span class="links_name">المدين</span>
+            </a>
+        </li>
+        <li>
+            <a href="#" data-page="reports">
+                <i class="fa-solid fa-chart-bar"></i>
+                <span class="links_name">التقارير</span>
+            </a>
+        </li>
+        <li>
+            <a href="#" data-page="settings">
+                <i class="fa-solid fa-gear"></i>
+                <span class="links_name">الإعدادات</span>
+            </a>
+        </li>
+    </ul>
+</div>
+
+<script src="js/script.js"></script>
+<script>
+document.querySelectorAll('.nav-list a').forEach(link => {
+    link.addEventListener('click', function(e) {
+        e.preventDefault();
+        const page = this.getAttribute('data-page');
+        // Remove active class from all links
+        document.querySelectorAll('.nav-list a').forEach(a => a.classList.remove('active'));
+        // Add active class to clicked link
+        this.classList.add('active');
+        // Send message to parent window
+        window.parent.postMessage({ type: 'loadPage', page: page }, '*');
+    });
+});
+</script>
